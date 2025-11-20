@@ -1,5 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+/*---break---
+     */
+@custom-variant dark (&:is(.dark *));
 
 @theme {
     /**
@@ -80,4 +83,21 @@
      */
     --ease-*: initial;
     --animate-*: initial;
+}
+
+/*---break---
+     */
+
+@theme inline {
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) + 4px);
+}
+
+/*---break---
+     */
+
+:root {
+    --radius: 0.5rem;
 }

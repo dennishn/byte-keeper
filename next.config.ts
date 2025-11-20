@@ -1,9 +1,5 @@
 import type { NextConfig } from "next";
-import withBundleAnalyzer from "@next/bundle-analyzer";
-
-const bundleAnalyzer = withBundleAnalyzer({
-    enabled: process.env.ANALYZE === "true",
-});
+import { withWorkflow } from "workflow/next";
 
 const nextConfig: NextConfig = {
     poweredByHeader: false,
@@ -12,6 +8,8 @@ const nextConfig: NextConfig = {
     reactStrictMode: true,
     reactCompiler: true,
     typedRoutes: true,
+    // Cache Components: Enable explicit opt-in caching with "use cache" directive
+    cacheComponents: true,
     experimental: {
         // report these metrics in the ReportWebVitals component
         webVitalsAttribution: ["FCP", "LCP", "CLS", "TTFB", "INP"],
@@ -20,4 +18,4 @@ const nextConfig: NextConfig = {
 
 // Using @next/bundle-analyzer together with turbo will show a warning in the terminal.
 // This is a known issue and can be ignored.
-export default bundleAnalyzer(nextConfig);
+export default withWorkflow(nextConfig);
