@@ -1,0 +1,83 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+    /**
+     * COLORS
+     * We remove the built in colors from Tailwind.
+     * You need to define your own colors based on the design tokens from Figma.
+     */
+    --color-*: initial;
+    --color-black: rgba(0, 0, 0, 1);
+    --color-white: rgba(255, 255, 255, 1);
+
+    /**
+     * TYPOGRAPHY
+     * We remove the built in typography from Tailwind.
+     * You need to define your own typography based on the design tokens from Figma.
+     */
+    --font-*: initial;
+    /* Font Weights */
+    --font-weight-*: initial;
+    /* Line Heights */
+    --leading-*: initial;
+    /* Font Sizes */
+    --text-*: initial;
+    /* Letter Spacing (Inspired by Tailwind CSS) */
+    --tracking-*: initial;
+
+    /**
+     * SPACING
+     * We keep the default spacing from Tailwind.
+     * We almost always use the same 4px pixel grid in all our projects.
+     */
+    /* --spacing-*: initial; */
+
+    /**
+     * BREAKPOINTS & CONTAINERS
+     * We disable the default breakpoints from Tailwind.
+     * Tablet and Desktop should cover most cases.
+     */
+    --breakpoint-tablet: 1024px;
+    --breakpoint-desktop: 1440px;
+
+    /**
+     * RADIUS
+     * You can define custom named radii here.
+     * You can also use the 4px pixel grid, e.g. --radius-4 === 16px; (4 * 4px)
+     */
+    /* --radius-*: initial; */
+
+    /**
+     * SHADOWS
+     * We exclude the default shadows from Tailwind.
+     */
+    --shadow-*: initial;
+
+    /**
+     * BLUR
+     * We exclude the default blurs from Tailwind.
+     */
+    --blur-*: initial;
+
+    /**
+     * PERSPECTIVE
+     * We exclude the default perspectives from Tailwind.
+     */
+    --perspective-*: initial;
+
+    /**
+     * ASPECT RATIOS
+     * We exclude the default aspect ratios from Tailwind.
+     * We recommend defining aspect ratios in the form of 16/9, 4/3, 1/1, etc.
+     * But you can use any ratio you want with dynamic values in the Tailwind class, e.g. aspect-ratio-[16/9] or aspect-ratio-[4/3].
+     */
+    --aspect-ratio-*: initial;
+
+    /**
+     * TRANSITIONS & ANIMATIONS
+     * We exclude the default transitions and animations from Tailwind.
+     */
+    --ease-*: initial;
+    --animate-*: initial;
+}
