@@ -221,12 +221,12 @@ async function handleEvent(body: SlackEventCallbackBody): Promise<void> {
             });
         }
 
+        // @TODO: Update Slack Bot scope to allow reading channel info.
         let channelName: string | undefined;
         try {
             const channelInfo = await client.conversations.info({
                 channel: channelId,
             });
-            console.log("CHANNEL INFO:", { channelInfo });
             channelName = channelInfo.channel?.name;
         } catch (error) {
             // eslint-disable-next-line no-console
