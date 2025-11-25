@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/__generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Link {
+    id                              String            @id @default(uuid())
+    createdAt                       DateTime          @default(now()) @map("created_at")
+    slackMessageTs                  String            @map("slack_message_ts")
+    slackChannelName                String            @map("slack_channel_name")
+    slackSharedByDisplayName        String            @map("slack_shared_by_display_name")
+    slackReactedByDisplayName       String            @map("slack_reacted_by_display_name")
+    slackLinks                      Json              @map("slack_links")
+    slackMessageText                String            @map("slack_message_text")
+    headline                        String
+    summary                         String?           @db.Text
+    newsletters                     NewsletterLink[]
+    tags                            LinkTag[]
+
+    @@map("links")
+    @@unique([slackMessageTs])
+    @@index([slackMessageTs])
+}
+
+model Newsletter {
+    id               String             @id @default(uuid())
+    month            String             @db.VarChar(7)
+    createdAt        DateTime           @default(now()) @map("created_at")
+    publishedAt      DateTime?          @map("published_at")
+    isPublished      Boolean            @default(false) @map("is_published")
+    approvedBy       String?            @map("approved_by")
+    subject          String             @db.VarChar(160)
+    introductionText String             @map("introduction_text") @db.Text
+    links            NewsletterLink[]
+
+    @@map("newsletters")
+    @@unique([month])
+}
+
+model Tag {
+    id   String   @id @default(uuid())
+    tag  String   @unique
+    links LinkTag[]
+
+    @@map("tags")
+}
+
+model LinkTag {
+    linkId String @map("link_id")
+    tagId  String @map("tag_id")
+    link   Link   @relation(fields: [linkId], references: [id], onDelete: Cascade)
+    tag    Tag    @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+    @@id([linkId, tagId])
+    @@map("link_tags")
+}
+
+model NewsletterLink {
+    newsletterId String      @map("newsletter_id")
+    linkId       String      @map("link_id")
+    position     Int         @default(0)
+    newsletter   Newsletter  @relation(fields: [newsletterId], references: [id], onDelete: Cascade)
+    link         Link        @relation(fields: [linkId], references: [id], onDelete: Cascade)
+
+    @@id([newsletterId, linkId])
+    @@map("newsletter_links")
+}

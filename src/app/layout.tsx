@@ -1,11 +1,11 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
+
 import "@/styles/theme.css";
 import { ReportWebVitals } from "@/components/web-vitals";
 
 export const metadata: Metadata = {
-    title: "akqa-dendach-nextjs-template",
-    description: "welcome to the best next.js boilerplate ever!",
+    title: "Byte Keeper",
 };
 
 export default function RootLayout({
@@ -15,9 +15,10 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className="antialiased">
+            <body>
+                <main>{children}</main>
+
                 <ReportWebVitals />
-                {children}
             </body>
         </html>
     );

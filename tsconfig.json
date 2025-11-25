@@ -22,7 +22,8 @@
             }
         ],
         "paths": {
-            "@/*": ["./src/*"]
+            "@/*": ["./src/*"],
+            "nuqs/server": ["./src/lib/nuqs/server"]
         }
     },
     "include": [
