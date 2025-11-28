@@ -20,74 +20,92 @@ export type NewsletterModel = runtime.Types.Result.DefaultSelection<Prisma.$News
 
 export type AggregateNewsletter = {
   _count: NewsletterCountAggregateOutputType | null
+  _avg: NewsletterAvgAggregateOutputType | null
+  _sum: NewsletterSumAggregateOutputType | null
   _min: NewsletterMinAggregateOutputType | null
   _max: NewsletterMaxAggregateOutputType | null
 }
 
+export type NewsletterAvgAggregateOutputType = {
+  editionNumber: number | null
+}
+
+export type NewsletterSumAggregateOutputType = {
+  editionNumber: number | null
+}
+
 export type NewsletterMinAggregateOutputType = {
   id: string | null
+  editionNumber: number | null
   month: string | null
   createdAt: Date | null
   publishedAt: Date | null
   isPublished: boolean | null
-  approvedBy: string | null
   subject: string | null
   introductionText: string | null
 }
 
 export type NewsletterMaxAggregateOutputType = {
   id: string | null
+  editionNumber: number | null
   month: string | null
   createdAt: Date | null
   publishedAt: Date | null
   isPublished: boolean | null
-  approvedBy: string | null
   subject: string | null
   introductionText: string | null
 }
 
 export type NewsletterCountAggregateOutputType = {
   id: number
+  editionNumber: number
   month: number
   createdAt: number
   publishedAt: number
   isPublished: number
-  approvedBy: number
   subject: number
   introductionText: number
   _all: number
 }
 
 
+export type NewsletterAvgAggregateInputType = {
+  editionNumber?: true
+}
+
+export type NewsletterSumAggregateInputType = {
+  editionNumber?: true
+}
+
 export type NewsletterMinAggregateInputType = {
   id?: true
+  editionNumber?: true
   month?: true
   createdAt?: true
   publishedAt?: true
   isPublished?: true
-  approvedBy?: true
   subject?: true
   introductionText?: true
 }
 
 export type NewsletterMaxAggregateInputType = {
   id?: true
+  editionNumber?: true
   month?: true
   createdAt?: true
   publishedAt?: true
   isPublished?: true
-  approvedBy?: true
   subject?: true
   introductionText?: true
 }
 
 export type NewsletterCountAggregateInputType = {
   id?: true
+  editionNumber?: true
   month?: true
   createdAt?: true
   publishedAt?: true
   isPublished?: true
-  approvedBy?: true
   subject?: true
   introductionText?: true
   _all?: true
@@ -131,6 +149,18 @@ export type NewsletterAggregateArgs<ExtArgs extends runtime.Types.Extensions.Int
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: NewsletterAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: NewsletterSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: NewsletterMinAggregateInputType
@@ -161,20 +191,24 @@ export type NewsletterGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   _count?: NewsletterCountAggregateInputType | true
+  _avg?: NewsletterAvgAggregateInputType
+  _sum?: NewsletterSumAggregateInputType
   _min?: NewsletterMinAggregateInputType
   _max?: NewsletterMaxAggregateInputType
 }
 
 export type NewsletterGroupByOutputType = {
   id: string
+  editionNumber: number
   month: string
   createdAt: Date
   publishedAt: Date | null
   isPublished: boolean
-  approvedBy: string | null
   subject: string
   introductionText: string
   _count: NewsletterCountAggregateOutputType | null
+  _avg: NewsletterAvgAggregateOutputType | null
+  _sum: NewsletterSumAggregateOutputType | null
   _min: NewsletterMinAggregateOutputType | null
   _max: NewsletterMaxAggregateOutputType | null
 }
@@ -199,11 +233,11 @@ export type NewsletterWhereInput = {
   OR?: Prisma.NewsletterWhereInput[]
   NOT?: Prisma.NewsletterWhereInput | Prisma.NewsletterWhereInput[]
   id?: Prisma.StringFilter<"Newsletter"> | string
+  editionNumber?: Prisma.IntFilter<"Newsletter"> | number
   month?: Prisma.StringFilter<"Newsletter"> | string
   createdAt?: Prisma.DateTimeFilter<"Newsletter"> | Date | string
   publishedAt?: Prisma.DateTimeNullableFilter<"Newsletter"> | Date | string | null
   isPublished?: Prisma.BoolFilter<"Newsletter"> | boolean
-  approvedBy?: Prisma.StringNullableFilter<"Newsletter"> | string | null
   subject?: Prisma.StringFilter<"Newsletter"> | string
   introductionText?: Prisma.StringFilter<"Newsletter"> | string
   links?: Prisma.NewsletterLinkListRelationFilter
@@ -211,11 +245,11 @@ export type NewsletterWhereInput = {
 
 export type NewsletterOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  editionNumber?: Prisma.SortOrder
   month?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   isPublished?: Prisma.SortOrder
-  approvedBy?: Prisma.SortOrderInput | Prisma.SortOrder
   subject?: Prisma.SortOrder
   introductionText?: Prisma.SortOrder
   links?: Prisma.NewsletterLinkOrderByRelationAggregateInput
@@ -227,10 +261,10 @@ export type NewsletterWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.NewsletterWhereInput | Prisma.NewsletterWhereInput[]
   OR?: Prisma.NewsletterWhereInput[]
   NOT?: Prisma.NewsletterWhereInput | Prisma.NewsletterWhereInput[]
+  editionNumber?: Prisma.IntFilter<"Newsletter"> | number
   createdAt?: Prisma.DateTimeFilter<"Newsletter"> | Date | string
   publishedAt?: Prisma.DateTimeNullableFilter<"Newsletter"> | Date | string | null
   isPublished?: Prisma.BoolFilter<"Newsletter"> | boolean
-  approvedBy?: Prisma.StringNullableFilter<"Newsletter"> | string | null
   subject?: Prisma.StringFilter<"Newsletter"> | string
   introductionText?: Prisma.StringFilter<"Newsletter"> | string
   links?: Prisma.NewsletterLinkListRelationFilter
@@ -238,16 +272,18 @@ export type NewsletterWhereUniqueInput = Prisma.AtLeast<{
 
 export type NewsletterOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  editionNumber?: Prisma.SortOrder
   month?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   isPublished?: Prisma.SortOrder
-  approvedBy?: Prisma.SortOrderInput | Prisma.SortOrder
   subject?: Prisma.SortOrder
   introductionText?: Prisma.SortOrder
   _count?: Prisma.NewsletterCountOrderByAggregateInput
+  _avg?: Prisma.NewsletterAvgOrderByAggregateInput
   _max?: Prisma.NewsletterMaxOrderByAggregateInput
   _min?: Prisma.NewsletterMinOrderByAggregateInput
+  _sum?: Prisma.NewsletterSumOrderByAggregateInput
 }
 
 export type NewsletterScalarWhereWithAggregatesInput = {
@@ -255,22 +291,22 @@ export type NewsletterScalarWhereWithAggregatesInput = {
   OR?: Prisma.NewsletterScalarWhereWithAggregatesInput[]
   NOT?: Prisma.NewsletterScalarWhereWithAggregatesInput | Prisma.NewsletterScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Newsletter"> | string
+  editionNumber?: Prisma.IntWithAggregatesFilter<"Newsletter"> | number
   month?: Prisma.StringWithAggregatesFilter<"Newsletter"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Newsletter"> | Date | string
   publishedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Newsletter"> | Date | string | null
   isPublished?: Prisma.BoolWithAggregatesFilter<"Newsletter"> | boolean
-  approvedBy?: Prisma.StringNullableWithAggregatesFilter<"Newsletter"> | string | null
   subject?: Prisma.StringWithAggregatesFilter<"Newsletter"> | string
   introductionText?: Prisma.StringWithAggregatesFilter<"Newsletter"> | string
 }
 
 export type NewsletterCreateInput = {
   id?: string
+  editionNumber?: number
   month: string
   createdAt?: Date | string
   publishedAt?: Date | string | null
   isPublished?: boolean
-  approvedBy?: string | null
   subject: string
   introductionText: string
   links?: Prisma.NewsletterLinkCreateNestedManyWithoutNewsletterInput
@@ -278,11 +314,11 @@ export type NewsletterCreateInput = {
 
 export type NewsletterUncheckedCreateInput = {
   id?: string
+  editionNumber?: number
   month: string
   createdAt?: Date | string
   publishedAt?: Date | string | null
   isPublished?: boolean
-  approvedBy?: string | null
   subject: string
   introductionText: string
   links?: Prisma.NewsletterLinkUncheckedCreateNestedManyWithoutNewsletterInput
@@ -290,11 +326,11 @@ export type NewsletterUncheckedCreateInput = {
 
 export type NewsletterUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  editionNumber?: Prisma.IntFieldUpdateOperationsInput | number
   month?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  approvedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subject?: Prisma.StringFieldUpdateOperationsInput | string
   introductionText?: Prisma.StringFieldUpdateOperationsInput | string
   links?: Prisma.NewsletterLinkUpdateManyWithoutNewsletterNestedInput
@@ -302,11 +338,11 @@ export type NewsletterUpdateInput = {
 
 export type NewsletterUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  editionNumber?: Prisma.IntFieldUpdateOperationsInput | number
   month?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  approvedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subject?: Prisma.StringFieldUpdateOperationsInput | string
   introductionText?: Prisma.StringFieldUpdateOperationsInput | string
   links?: Prisma.NewsletterLinkUncheckedUpdateManyWithoutNewsletterNestedInput
@@ -314,73 +350,89 @@ export type NewsletterUncheckedUpdateInput = {
 
 export type NewsletterCreateManyInput = {
   id?: string
+  editionNumber?: number
   month: string
   createdAt?: Date | string
   publishedAt?: Date | string | null
   isPublished?: boolean
-  approvedBy?: string | null
   subject: string
   introductionText: string
 }
 
 export type NewsletterUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  editionNumber?: Prisma.IntFieldUpdateOperationsInput | number
   month?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  approvedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subject?: Prisma.StringFieldUpdateOperationsInput | string
   introductionText?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type NewsletterUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  editionNumber?: Prisma.IntFieldUpdateOperationsInput | number
   month?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  approvedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subject?: Prisma.StringFieldUpdateOperationsInput | string
   introductionText?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type NewsletterCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  editionNumber?: Prisma.SortOrder
   month?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
-  approvedBy?: Prisma.SortOrder
   subject?: Prisma.SortOrder
   introductionText?: Prisma.SortOrder
 }
 
+export type NewsletterAvgOrderByAggregateInput = {
+  editionNumber?: Prisma.SortOrder
+}
+
 export type NewsletterMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  editionNumber?: Prisma.SortOrder
   month?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
-  approvedBy?: Prisma.SortOrder
   subject?: Prisma.SortOrder
   introductionText?: Prisma.SortOrder
 }
 
 export type NewsletterMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  editionNumber?: Prisma.SortOrder
   month?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
-  approvedBy?: Prisma.SortOrder
   subject?: Prisma.SortOrder
   introductionText?: Prisma.SortOrder
+}
+
+export type NewsletterSumOrderByAggregateInput = {
+  editionNumber?: Prisma.SortOrder
 }
 
 export type NewsletterScalarRelationFilter = {
   is?: Prisma.NewsletterWhereInput
   isNot?: Prisma.NewsletterWhereInput
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -407,22 +459,22 @@ export type NewsletterUpdateOneRequiredWithoutLinksNestedInput = {
 
 export type NewsletterCreateWithoutLinksInput = {
   id?: string
+  editionNumber?: number
   month: string
   createdAt?: Date | string
   publishedAt?: Date | string | null
   isPublished?: boolean
-  approvedBy?: string | null
   subject: string
   introductionText: string
 }
 
 export type NewsletterUncheckedCreateWithoutLinksInput = {
   id?: string
+  editionNumber?: number
   month: string
   createdAt?: Date | string
   publishedAt?: Date | string | null
   isPublished?: boolean
-  approvedBy?: string | null
   subject: string
   introductionText: string
 }
@@ -445,22 +497,22 @@ export type NewsletterUpdateToOneWithWhereWithoutLinksInput = {
 
 export type NewsletterUpdateWithoutLinksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  editionNumber?: Prisma.IntFieldUpdateOperationsInput | number
   month?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  approvedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subject?: Prisma.StringFieldUpdateOperationsInput | string
   introductionText?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type NewsletterUncheckedUpdateWithoutLinksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  editionNumber?: Prisma.IntFieldUpdateOperationsInput | number
   month?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  approvedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subject?: Prisma.StringFieldUpdateOperationsInput | string
   introductionText?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -498,11 +550,11 @@ export type NewsletterCountOutputTypeCountLinksArgs<ExtArgs extends runtime.Type
 
 export type NewsletterSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  editionNumber?: boolean
   month?: boolean
   createdAt?: boolean
   publishedAt?: boolean
   isPublished?: boolean
-  approvedBy?: boolean
   subject?: boolean
   introductionText?: boolean
   links?: boolean | Prisma.Newsletter$linksArgs<ExtArgs>
@@ -511,38 +563,38 @@ export type NewsletterSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
 
 export type NewsletterSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  editionNumber?: boolean
   month?: boolean
   createdAt?: boolean
   publishedAt?: boolean
   isPublished?: boolean
-  approvedBy?: boolean
   subject?: boolean
   introductionText?: boolean
 }, ExtArgs["result"]["newsletter"]>
 
 export type NewsletterSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  editionNumber?: boolean
   month?: boolean
   createdAt?: boolean
   publishedAt?: boolean
   isPublished?: boolean
-  approvedBy?: boolean
   subject?: boolean
   introductionText?: boolean
 }, ExtArgs["result"]["newsletter"]>
 
 export type NewsletterSelectScalar = {
   id?: boolean
+  editionNumber?: boolean
   month?: boolean
   createdAt?: boolean
   publishedAt?: boolean
   isPublished?: boolean
-  approvedBy?: boolean
   subject?: boolean
   introductionText?: boolean
 }
 
-export type NewsletterOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "month" | "createdAt" | "publishedAt" | "isPublished" | "approvedBy" | "subject" | "introductionText", ExtArgs["result"]["newsletter"]>
+export type NewsletterOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "editionNumber" | "month" | "createdAt" | "publishedAt" | "isPublished" | "subject" | "introductionText", ExtArgs["result"]["newsletter"]>
 export type NewsletterInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   links?: boolean | Prisma.Newsletter$linksArgs<ExtArgs>
   _count?: boolean | Prisma.NewsletterCountOutputTypeDefaultArgs<ExtArgs>
@@ -557,11 +609,11 @@ export type $NewsletterPayload<ExtArgs extends runtime.Types.Extensions.Internal
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
+    editionNumber: number
     month: string
     createdAt: Date
     publishedAt: Date | null
     isPublished: boolean
-    approvedBy: string | null
     subject: string
     introductionText: string
   }, ExtArgs["result"]["newsletter"]>
@@ -989,11 +1041,11 @@ export interface Prisma__NewsletterClient<T, Null = never, ExtArgs extends runti
  */
 export interface NewsletterFieldRefs {
   readonly id: Prisma.FieldRef<"Newsletter", 'String'>
+  readonly editionNumber: Prisma.FieldRef<"Newsletter", 'Int'>
   readonly month: Prisma.FieldRef<"Newsletter", 'String'>
   readonly createdAt: Prisma.FieldRef<"Newsletter", 'DateTime'>
   readonly publishedAt: Prisma.FieldRef<"Newsletter", 'DateTime'>
   readonly isPublished: Prisma.FieldRef<"Newsletter", 'Boolean'>
-  readonly approvedBy: Prisma.FieldRef<"Newsletter", 'String'>
   readonly subject: Prisma.FieldRef<"Newsletter", 'String'>
   readonly introductionText: Prisma.FieldRef<"Newsletter", 'String'>
 }

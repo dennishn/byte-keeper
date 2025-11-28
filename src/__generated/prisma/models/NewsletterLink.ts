@@ -409,14 +409,6 @@ export type NewsletterLinkUncheckedUpdateManyWithoutNewsletterNestedInput = {
   deleteMany?: Prisma.NewsletterLinkScalarWhereInput | Prisma.NewsletterLinkScalarWhereInput[]
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type NewsletterLinkCreateWithoutLinkInput = {
   position?: number
   newsletter: Prisma.NewsletterCreateNestedOneWithoutLinksInput

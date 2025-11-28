@@ -827,7 +827,9 @@ export const LinkScalarFieldEnum = {
   slackLinks: 'slackLinks',
   slackMessageText: 'slackMessageText',
   headline: 'headline',
-  summary: 'summary'
+  summary: 'summary',
+  url: 'url',
+  thumbnail: 'thumbnail'
 } as const
 
 export type LinkScalarFieldEnum = (typeof LinkScalarFieldEnum)[keyof typeof LinkScalarFieldEnum]
@@ -835,11 +837,11 @@ export type LinkScalarFieldEnum = (typeof LinkScalarFieldEnum)[keyof typeof Link
 
 export const NewsletterScalarFieldEnum = {
   id: 'id',
+  editionNumber: 'editionNumber',
   month: 'month',
   createdAt: 'createdAt',
   publishedAt: 'publishedAt',
   isPublished: 'isPublished',
-  approvedBy: 'approvedBy',
   subject: 'subject',
   introductionText: 'introductionText'
 } as const
@@ -849,7 +851,8 @@ export type NewsletterScalarFieldEnum = (typeof NewsletterScalarFieldEnum)[keyof
 
 export const TagScalarFieldEnum = {
   id: 'id',
-  tag: 'tag'
+  key: 'key',
+  label: 'label'
 } as const
 
 export type TagScalarFieldEnum = (typeof TagScalarFieldEnum)[keyof typeof TagScalarFieldEnum]
@@ -961,13 +964,6 @@ export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$Prisma
 
 
 /**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-/**
  * Reference to a field of type 'Int'
  */
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -978,6 +974,13 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 

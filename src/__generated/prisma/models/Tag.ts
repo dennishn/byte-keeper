@@ -26,34 +26,40 @@ export type AggregateTag = {
 
 export type TagMinAggregateOutputType = {
   id: string | null
-  tag: string | null
+  key: string | null
+  label: string | null
 }
 
 export type TagMaxAggregateOutputType = {
   id: string | null
-  tag: string | null
+  key: string | null
+  label: string | null
 }
 
 export type TagCountAggregateOutputType = {
   id: number
-  tag: number
+  key: number
+  label: number
   _all: number
 }
 
 
 export type TagMinAggregateInputType = {
   id?: true
-  tag?: true
+  key?: true
+  label?: true
 }
 
 export type TagMaxAggregateInputType = {
   id?: true
-  tag?: true
+  key?: true
+  label?: true
 }
 
 export type TagCountAggregateInputType = {
   id?: true
-  tag?: true
+  key?: true
+  label?: true
   _all?: true
 }
 
@@ -131,7 +137,8 @@ export type TagGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
 
 export type TagGroupByOutputType = {
   id: string
-  tag: string
+  key: string
+  label: string
   _count: TagCountAggregateOutputType | null
   _min: TagMinAggregateOutputType | null
   _max: TagMaxAggregateOutputType | null
@@ -157,28 +164,32 @@ export type TagWhereInput = {
   OR?: Prisma.TagWhereInput[]
   NOT?: Prisma.TagWhereInput | Prisma.TagWhereInput[]
   id?: Prisma.StringFilter<"Tag"> | string
-  tag?: Prisma.StringFilter<"Tag"> | string
+  key?: Prisma.StringFilter<"Tag"> | string
+  label?: Prisma.StringFilter<"Tag"> | string
   links?: Prisma.LinkTagListRelationFilter
 }
 
 export type TagOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  tag?: Prisma.SortOrder
+  key?: Prisma.SortOrder
+  label?: Prisma.SortOrder
   links?: Prisma.LinkTagOrderByRelationAggregateInput
 }
 
 export type TagWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  tag?: string
+  key?: string
   AND?: Prisma.TagWhereInput | Prisma.TagWhereInput[]
   OR?: Prisma.TagWhereInput[]
   NOT?: Prisma.TagWhereInput | Prisma.TagWhereInput[]
+  label?: Prisma.StringFilter<"Tag"> | string
   links?: Prisma.LinkTagListRelationFilter
-}, "id" | "tag">
+}, "id" | "key">
 
 export type TagOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  tag?: Prisma.SortOrder
+  key?: Prisma.SortOrder
+  label?: Prisma.SortOrder
   _count?: Prisma.TagCountOrderByAggregateInput
   _max?: Prisma.TagMaxOrderByAggregateInput
   _min?: Prisma.TagMinOrderByAggregateInput
@@ -189,61 +200,72 @@ export type TagScalarWhereWithAggregatesInput = {
   OR?: Prisma.TagScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TagScalarWhereWithAggregatesInput | Prisma.TagScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Tag"> | string
-  tag?: Prisma.StringWithAggregatesFilter<"Tag"> | string
+  key?: Prisma.StringWithAggregatesFilter<"Tag"> | string
+  label?: Prisma.StringWithAggregatesFilter<"Tag"> | string
 }
 
 export type TagCreateInput = {
   id?: string
-  tag: string
+  key: string
+  label: string
   links?: Prisma.LinkTagCreateNestedManyWithoutTagInput
 }
 
 export type TagUncheckedCreateInput = {
   id?: string
-  tag: string
+  key: string
+  label: string
   links?: Prisma.LinkTagUncheckedCreateNestedManyWithoutTagInput
 }
 
 export type TagUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  tag?: Prisma.StringFieldUpdateOperationsInput | string
+  key?: Prisma.StringFieldUpdateOperationsInput | string
+  label?: Prisma.StringFieldUpdateOperationsInput | string
   links?: Prisma.LinkTagUpdateManyWithoutTagNestedInput
 }
 
 export type TagUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  tag?: Prisma.StringFieldUpdateOperationsInput | string
+  key?: Prisma.StringFieldUpdateOperationsInput | string
+  label?: Prisma.StringFieldUpdateOperationsInput | string
   links?: Prisma.LinkTagUncheckedUpdateManyWithoutTagNestedInput
 }
 
 export type TagCreateManyInput = {
   id?: string
-  tag: string
+  key: string
+  label: string
 }
 
 export type TagUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  tag?: Prisma.StringFieldUpdateOperationsInput | string
+  key?: Prisma.StringFieldUpdateOperationsInput | string
+  label?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type TagUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  tag?: Prisma.StringFieldUpdateOperationsInput | string
+  key?: Prisma.StringFieldUpdateOperationsInput | string
+  label?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type TagCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  tag?: Prisma.SortOrder
+  key?: Prisma.SortOrder
+  label?: Prisma.SortOrder
 }
 
 export type TagMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  tag?: Prisma.SortOrder
+  key?: Prisma.SortOrder
+  label?: Prisma.SortOrder
 }
 
 export type TagMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  tag?: Prisma.SortOrder
+  key?: Prisma.SortOrder
+  label?: Prisma.SortOrder
 }
 
 export type TagScalarRelationFilter = {
@@ -267,12 +289,14 @@ export type TagUpdateOneRequiredWithoutLinksNestedInput = {
 
 export type TagCreateWithoutLinksInput = {
   id?: string
-  tag: string
+  key: string
+  label: string
 }
 
 export type TagUncheckedCreateWithoutLinksInput = {
   id?: string
-  tag: string
+  key: string
+  label: string
 }
 
 export type TagCreateOrConnectWithoutLinksInput = {
@@ -293,12 +317,14 @@ export type TagUpdateToOneWithWhereWithoutLinksInput = {
 
 export type TagUpdateWithoutLinksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  tag?: Prisma.StringFieldUpdateOperationsInput | string
+  key?: Prisma.StringFieldUpdateOperationsInput | string
+  label?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type TagUncheckedUpdateWithoutLinksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  tag?: Prisma.StringFieldUpdateOperationsInput | string
+  key?: Prisma.StringFieldUpdateOperationsInput | string
+  label?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -334,27 +360,31 @@ export type TagCountOutputTypeCountLinksArgs<ExtArgs extends runtime.Types.Exten
 
 export type TagSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  tag?: boolean
+  key?: boolean
+  label?: boolean
   links?: boolean | Prisma.Tag$linksArgs<ExtArgs>
   _count?: boolean | Prisma.TagCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tag"]>
 
 export type TagSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  tag?: boolean
+  key?: boolean
+  label?: boolean
 }, ExtArgs["result"]["tag"]>
 
 export type TagSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  tag?: boolean
+  key?: boolean
+  label?: boolean
 }, ExtArgs["result"]["tag"]>
 
 export type TagSelectScalar = {
   id?: boolean
-  tag?: boolean
+  key?: boolean
+  label?: boolean
 }
 
-export type TagOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tag", ExtArgs["result"]["tag"]>
+export type TagOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "key" | "label", ExtArgs["result"]["tag"]>
 export type TagInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   links?: boolean | Prisma.Tag$linksArgs<ExtArgs>
   _count?: boolean | Prisma.TagCountOutputTypeDefaultArgs<ExtArgs>
@@ -369,7 +399,8 @@ export type $TagPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    tag: string
+    key: string
+    label: string
   }, ExtArgs["result"]["tag"]>
   composites: {}
 }
@@ -795,7 +826,8 @@ export interface Prisma__TagClient<T, Null = never, ExtArgs extends runtime.Type
  */
 export interface TagFieldRefs {
   readonly id: Prisma.FieldRef<"Tag", 'String'>
-  readonly tag: Prisma.FieldRef<"Tag", 'String'>
+  readonly key: Prisma.FieldRef<"Tag", 'String'>
+  readonly label: Prisma.FieldRef<"Tag", 'String'>
 }
     
 

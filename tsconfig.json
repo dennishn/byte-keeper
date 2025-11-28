@@ -34,7 +34,8 @@
         ".next/types/**/*.ts",
         "**/.cursor/**/*.ts",
         "**/.cursor/**/*.tsx",
-        ".next/dev/types/**/*.ts"
+        ".next/dev/types/**/*.ts",
+        "scripts/create-tags.ts"
     ],
     "exclude": ["node_modules", "src/__generated"]
 }

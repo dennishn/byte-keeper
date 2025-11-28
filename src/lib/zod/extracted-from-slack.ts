@@ -3,6 +3,7 @@ import { z } from "zod";
 const ExtractedFromSlackSchema = z.object({
     slackMessageTs: z.string(),
     slackChannelName: z.string(),
+    slackChannelId: z.string(),
     slackSharedByDisplayName: z.string(),
     slackReactedByDisplayName: z.string(),
     slackLinks: z.array(

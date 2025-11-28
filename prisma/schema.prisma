@@ -18,21 +18,23 @@ model Link {
     slackMessageText                String            @map("slack_message_text")
     headline                        String
     summary                         String?           @db.Text
+    url                             String
+    thumbnail                       String?
     newsletters                     NewsletterLink[]
     tags                            LinkTag[]
 
     @@map("links")
-    @@unique([slackMessageTs])
     @@index([slackMessageTs])
+    @@unique([url])
 }
 
 model Newsletter {
     id               String             @id @default(uuid())
+    editionNumber    Int                @default(autoincrement()) @map("edition_number")
     month            String             @db.VarChar(7)
     createdAt        DateTime           @default(now()) @map("created_at")
     publishedAt      DateTime?          @map("published_at")
     isPublished      Boolean            @default(false) @map("is_published")
-    approvedBy       String?            @map("approved_by")
     subject          String             @db.VarChar(160)
     introductionText String             @map("introduction_text") @db.Text
     links            NewsletterLink[]
@@ -42,8 +44,9 @@ model Newsletter {
 }
 
 model Tag {
-    id   String   @id @default(uuid())
-    tag  String   @unique
+    id      String   @id @default(uuid())
+    key     String   @unique
+    label   String
     links LinkTag[]
 
     @@map("tags")

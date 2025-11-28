@@ -15,7 +15,7 @@
         "db:generate": "prisma generate",
         "db:migrate": "prisma migrate dev",
         "db:push": "prisma db push",
-        "db:seed": "tsx scripts/prisma-seed-db.ts",
+        "workflow:inspect": "npx workflow inspect runs --web",
         "prepare": "node ./install-husky.js",
         "test": "tsx --test tests",
         "lint-staged": "lint-staged",

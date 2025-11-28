@@ -34,6 +34,8 @@ export type LinkMinAggregateOutputType = {
   slackMessageText: string | null
   headline: string | null
   summary: string | null
+  url: string | null
+  thumbnail: string | null
 }
 
 export type LinkMaxAggregateOutputType = {
@@ -46,6 +48,8 @@ export type LinkMaxAggregateOutputType = {
   slackMessageText: string | null
   headline: string | null
   summary: string | null
+  url: string | null
+  thumbnail: string | null
 }
 
 export type LinkCountAggregateOutputType = {
@@ -59,6 +63,8 @@ export type LinkCountAggregateOutputType = {
   slackMessageText: number
   headline: number
   summary: number
+  url: number
+  thumbnail: number
   _all: number
 }
 
@@ -73,6 +79,8 @@ export type LinkMinAggregateInputType = {
   slackMessageText?: true
   headline?: true
   summary?: true
+  url?: true
+  thumbnail?: true
 }
 
 export type LinkMaxAggregateInputType = {
@@ -85,6 +93,8 @@ export type LinkMaxAggregateInputType = {
   slackMessageText?: true
   headline?: true
   summary?: true
+  url?: true
+  thumbnail?: true
 }
 
 export type LinkCountAggregateInputType = {
@@ -98,6 +108,8 @@ export type LinkCountAggregateInputType = {
   slackMessageText?: true
   headline?: true
   summary?: true
+  url?: true
+  thumbnail?: true
   _all?: true
 }
 
@@ -184,6 +196,8 @@ export type LinkGroupByOutputType = {
   slackMessageText: string
   headline: string
   summary: string | null
+  url: string
+  thumbnail: string | null
   _count: LinkCountAggregateOutputType | null
   _min: LinkMinAggregateOutputType | null
   _max: LinkMaxAggregateOutputType | null
@@ -218,6 +232,8 @@ export type LinkWhereInput = {
   slackMessageText?: Prisma.StringFilter<"Link"> | string
   headline?: Prisma.StringFilter<"Link"> | string
   summary?: Prisma.StringNullableFilter<"Link"> | string | null
+  url?: Prisma.StringFilter<"Link"> | string
+  thumbnail?: Prisma.StringNullableFilter<"Link"> | string | null
   newsletters?: Prisma.NewsletterLinkListRelationFilter
   tags?: Prisma.LinkTagListRelationFilter
 }
@@ -233,17 +249,20 @@ export type LinkOrderByWithRelationInput = {
   slackMessageText?: Prisma.SortOrder
   headline?: Prisma.SortOrder
   summary?: Prisma.SortOrderInput | Prisma.SortOrder
+  url?: Prisma.SortOrder
+  thumbnail?: Prisma.SortOrderInput | Prisma.SortOrder
   newsletters?: Prisma.NewsletterLinkOrderByRelationAggregateInput
   tags?: Prisma.LinkTagOrderByRelationAggregateInput
 }
 
 export type LinkWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  slackMessageTs?: string
+  url?: string
   AND?: Prisma.LinkWhereInput | Prisma.LinkWhereInput[]
   OR?: Prisma.LinkWhereInput[]
   NOT?: Prisma.LinkWhereInput | Prisma.LinkWhereInput[]
   createdAt?: Prisma.DateTimeFilter<"Link"> | Date | string
+  slackMessageTs?: Prisma.StringFilter<"Link"> | string
   slackChannelName?: Prisma.StringFilter<"Link"> | string
   slackSharedByDisplayName?: Prisma.StringFilter<"Link"> | string
   slackReactedByDisplayName?: Prisma.StringFilter<"Link"> | string
@@ -251,9 +270,10 @@ export type LinkWhereUniqueInput = Prisma.AtLeast<{
   slackMessageText?: Prisma.StringFilter<"Link"> | string
   headline?: Prisma.StringFilter<"Link"> | string
   summary?: Prisma.StringNullableFilter<"Link"> | string | null
+  thumbnail?: Prisma.StringNullableFilter<"Link"> | string | null
   newsletters?: Prisma.NewsletterLinkListRelationFilter
   tags?: Prisma.LinkTagListRelationFilter
-}, "id" | "slackMessageTs">
+}, "id" | "url">
 
 export type LinkOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -266,6 +286,8 @@ export type LinkOrderByWithAggregationInput = {
   slackMessageText?: Prisma.SortOrder
   headline?: Prisma.SortOrder
   summary?: Prisma.SortOrderInput | Prisma.SortOrder
+  url?: Prisma.SortOrder
+  thumbnail?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.LinkCountOrderByAggregateInput
   _max?: Prisma.LinkMaxOrderByAggregateInput
   _min?: Prisma.LinkMinOrderByAggregateInput
@@ -285,6 +307,8 @@ export type LinkScalarWhereWithAggregatesInput = {
   slackMessageText?: Prisma.StringWithAggregatesFilter<"Link"> | string
   headline?: Prisma.StringWithAggregatesFilter<"Link"> | string
   summary?: Prisma.StringNullableWithAggregatesFilter<"Link"> | string | null
+  url?: Prisma.StringWithAggregatesFilter<"Link"> | string
+  thumbnail?: Prisma.StringNullableWithAggregatesFilter<"Link"> | string | null
 }
 
 export type LinkCreateInput = {
@@ -298,6 +322,8 @@ export type LinkCreateInput = {
   slackMessageText: string
   headline: string
   summary?: string | null
+  url: string
+  thumbnail?: string | null
   newsletters?: Prisma.NewsletterLinkCreateNestedManyWithoutLinkInput
   tags?: Prisma.LinkTagCreateNestedManyWithoutLinkInput
 }
@@ -313,6 +339,8 @@ export type LinkUncheckedCreateInput = {
   slackMessageText: string
   headline: string
   summary?: string | null
+  url: string
+  thumbnail?: string | null
   newsletters?: Prisma.NewsletterLinkUncheckedCreateNestedManyWithoutLinkInput
   tags?: Prisma.LinkTagUncheckedCreateNestedManyWithoutLinkInput
 }
@@ -328,6 +356,8 @@ export type LinkUpdateInput = {
   slackMessageText?: Prisma.StringFieldUpdateOperationsInput | string
   headline?: Prisma.StringFieldUpdateOperationsInput | string
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   newsletters?: Prisma.NewsletterLinkUpdateManyWithoutLinkNestedInput
   tags?: Prisma.LinkTagUpdateManyWithoutLinkNestedInput
 }
@@ -343,6 +373,8 @@ export type LinkUncheckedUpdateInput = {
   slackMessageText?: Prisma.StringFieldUpdateOperationsInput | string
   headline?: Prisma.StringFieldUpdateOperationsInput | string
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   newsletters?: Prisma.NewsletterLinkUncheckedUpdateManyWithoutLinkNestedInput
   tags?: Prisma.LinkTagUncheckedUpdateManyWithoutLinkNestedInput
 }
@@ -358,6 +390,8 @@ export type LinkCreateManyInput = {
   slackMessageText: string
   headline: string
   summary?: string | null
+  url: string
+  thumbnail?: string | null
 }
 
 export type LinkUpdateManyMutationInput = {
@@ -371,6 +405,8 @@ export type LinkUpdateManyMutationInput = {
   slackMessageText?: Prisma.StringFieldUpdateOperationsInput | string
   headline?: Prisma.StringFieldUpdateOperationsInput | string
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type LinkUncheckedUpdateManyInput = {
@@ -384,6 +420,8 @@ export type LinkUncheckedUpdateManyInput = {
   slackMessageText?: Prisma.StringFieldUpdateOperationsInput | string
   headline?: Prisma.StringFieldUpdateOperationsInput | string
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type LinkCountOrderByAggregateInput = {
@@ -397,6 +435,8 @@ export type LinkCountOrderByAggregateInput = {
   slackMessageText?: Prisma.SortOrder
   headline?: Prisma.SortOrder
   summary?: Prisma.SortOrder
+  url?: Prisma.SortOrder
+  thumbnail?: Prisma.SortOrder
 }
 
 export type LinkMaxOrderByAggregateInput = {
@@ -409,6 +449,8 @@ export type LinkMaxOrderByAggregateInput = {
   slackMessageText?: Prisma.SortOrder
   headline?: Prisma.SortOrder
   summary?: Prisma.SortOrder
+  url?: Prisma.SortOrder
+  thumbnail?: Prisma.SortOrder
 }
 
 export type LinkMinOrderByAggregateInput = {
@@ -421,6 +463,8 @@ export type LinkMinOrderByAggregateInput = {
   slackMessageText?: Prisma.SortOrder
   headline?: Prisma.SortOrder
   summary?: Prisma.SortOrder
+  url?: Prisma.SortOrder
+  thumbnail?: Prisma.SortOrder
 }
 
 export type LinkScalarRelationFilter = {
@@ -479,6 +523,8 @@ export type LinkCreateWithoutTagsInput = {
   slackMessageText: string
   headline: string
   summary?: string | null
+  url: string
+  thumbnail?: string | null
   newsletters?: Prisma.NewsletterLinkCreateNestedManyWithoutLinkInput
 }
 
@@ -493,6 +539,8 @@ export type LinkUncheckedCreateWithoutTagsInput = {
   slackMessageText: string
   headline: string
   summary?: string | null
+  url: string
+  thumbnail?: string | null
   newsletters?: Prisma.NewsletterLinkUncheckedCreateNestedManyWithoutLinkInput
 }
 
@@ -523,6 +571,8 @@ export type LinkUpdateWithoutTagsInput = {
   slackMessageText?: Prisma.StringFieldUpdateOperationsInput | string
   headline?: Prisma.StringFieldUpdateOperationsInput | string
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   newsletters?: Prisma.NewsletterLinkUpdateManyWithoutLinkNestedInput
 }
 
@@ -537,6 +587,8 @@ export type LinkUncheckedUpdateWithoutTagsInput = {
   slackMessageText?: Prisma.StringFieldUpdateOperationsInput | string
   headline?: Prisma.StringFieldUpdateOperationsInput | string
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   newsletters?: Prisma.NewsletterLinkUncheckedUpdateManyWithoutLinkNestedInput
 }
 
@@ -551,6 +603,8 @@ export type LinkCreateWithoutNewslettersInput = {
   slackMessageText: string
   headline: string
   summary?: string | null
+  url: string
+  thumbnail?: string | null
   tags?: Prisma.LinkTagCreateNestedManyWithoutLinkInput
 }
 
@@ -565,6 +619,8 @@ export type LinkUncheckedCreateWithoutNewslettersInput = {
   slackMessageText: string
   headline: string
   summary?: string | null
+  url: string
+  thumbnail?: string | null
   tags?: Prisma.LinkTagUncheckedCreateNestedManyWithoutLinkInput
 }
 
@@ -595,6 +651,8 @@ export type LinkUpdateWithoutNewslettersInput = {
   slackMessageText?: Prisma.StringFieldUpdateOperationsInput | string
   headline?: Prisma.StringFieldUpdateOperationsInput | string
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tags?: Prisma.LinkTagUpdateManyWithoutLinkNestedInput
 }
 
@@ -609,6 +667,8 @@ export type LinkUncheckedUpdateWithoutNewslettersInput = {
   slackMessageText?: Prisma.StringFieldUpdateOperationsInput | string
   headline?: Prisma.StringFieldUpdateOperationsInput | string
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tags?: Prisma.LinkTagUncheckedUpdateManyWithoutLinkNestedInput
 }
 
@@ -663,6 +723,8 @@ export type LinkSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   slackMessageText?: boolean
   headline?: boolean
   summary?: boolean
+  url?: boolean
+  thumbnail?: boolean
   newsletters?: boolean | Prisma.Link$newslettersArgs<ExtArgs>
   tags?: boolean | Prisma.Link$tagsArgs<ExtArgs>
   _count?: boolean | Prisma.LinkCountOutputTypeDefaultArgs<ExtArgs>
@@ -679,6 +741,8 @@ export type LinkSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   slackMessageText?: boolean
   headline?: boolean
   summary?: boolean
+  url?: boolean
+  thumbnail?: boolean
 }, ExtArgs["result"]["link"]>
 
 export type LinkSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -692,6 +756,8 @@ export type LinkSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   slackMessageText?: boolean
   headline?: boolean
   summary?: boolean
+  url?: boolean
+  thumbnail?: boolean
 }, ExtArgs["result"]["link"]>
 
 export type LinkSelectScalar = {
@@ -705,9 +771,11 @@ export type LinkSelectScalar = {
   slackMessageText?: boolean
   headline?: boolean
   summary?: boolean
+  url?: boolean
+  thumbnail?: boolean
 }
 
-export type LinkOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "slackMessageTs" | "slackChannelName" | "slackSharedByDisplayName" | "slackReactedByDisplayName" | "slackLinks" | "slackMessageText" | "headline" | "summary", ExtArgs["result"]["link"]>
+export type LinkOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "slackMessageTs" | "slackChannelName" | "slackSharedByDisplayName" | "slackReactedByDisplayName" | "slackLinks" | "slackMessageText" | "headline" | "summary" | "url" | "thumbnail", ExtArgs["result"]["link"]>
 export type LinkInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   newsletters?: boolean | Prisma.Link$newslettersArgs<ExtArgs>
   tags?: boolean | Prisma.Link$tagsArgs<ExtArgs>
@@ -733,6 +801,8 @@ export type $LinkPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     slackMessageText: string
     headline: string
     summary: string | null
+    url: string
+    thumbnail: string | null
   }, ExtArgs["result"]["link"]>
   composites: {}
 }
@@ -1168,6 +1238,8 @@ export interface LinkFieldRefs {
   readonly slackMessageText: Prisma.FieldRef<"Link", 'String'>
   readonly headline: Prisma.FieldRef<"Link", 'String'>
   readonly summary: Prisma.FieldRef<"Link", 'String'>
+  readonly url: Prisma.FieldRef<"Link", 'String'>
+  readonly thumbnail: Prisma.FieldRef<"Link", 'String'>
 }
     
 

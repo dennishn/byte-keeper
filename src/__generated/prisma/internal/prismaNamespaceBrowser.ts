@@ -84,7 +84,9 @@ export const LinkScalarFieldEnum = {
   slackLinks: 'slackLinks',
   slackMessageText: 'slackMessageText',
   headline: 'headline',
-  summary: 'summary'
+  summary: 'summary',
+  url: 'url',
+  thumbnail: 'thumbnail'
 } as const
 
 export type LinkScalarFieldEnum = (typeof LinkScalarFieldEnum)[keyof typeof LinkScalarFieldEnum]
@@ -92,11 +94,11 @@ export type LinkScalarFieldEnum = (typeof LinkScalarFieldEnum)[keyof typeof Link
 
 export const NewsletterScalarFieldEnum = {
   id: 'id',
+  editionNumber: 'editionNumber',
   month: 'month',
   createdAt: 'createdAt',
   publishedAt: 'publishedAt',
   isPublished: 'isPublished',
-  approvedBy: 'approvedBy',
   subject: 'subject',
   introductionText: 'introductionText'
 } as const
@@ -106,7 +108,8 @@ export type NewsletterScalarFieldEnum = (typeof NewsletterScalarFieldEnum)[keyof
 
 export const TagScalarFieldEnum = {
   id: 'id',
-  tag: 'tag'
+  key: 'key',
+  label: 'label'
 } as const
 
 export type TagScalarFieldEnum = (typeof TagScalarFieldEnum)[keyof typeof TagScalarFieldEnum]

@@ -10,6 +10,10 @@ import type { ExtractedFromSlackSchema } from "@/lib/zod/extracted-from-slack";
 import type z from "zod";
 import { start } from "workflow/api";
 import { processUrlWorkflow } from "@/workflows/process-url";
+import {
+    getEmojiReactionType,
+    isAllowedEmoji,
+} from "@/lib/slack/emoji-reactions";
 
 type SlackUrlVerificationBody = {
     token: string;
@@ -144,19 +148,21 @@ async function handleEvent(body: SlackEventCallbackBody): Promise<void> {
     const reactionEmoji = event.reaction;
     const reactedByUserId = event.user;
 
-    // Parse allowed emojis from environment variable
-    const allowedEmojisEnv = process.env.SLACK_CAPTURE_EMOJIS || "";
-    const allowedEmojis = allowedEmojisEnv
-        .split(",")
-        .map((emoji) => emoji.trim())
-        .filter((emoji) => emoji.length > 0);
-
     // Check if the reaction emoji is in the allowed list
-    if (allowedEmojis.length > 0 && !allowedEmojis.includes(reactionEmoji)) {
+    if (!isAllowedEmoji(reactionEmoji)) {
         // eslint-disable-next-line no-console
-        console.log("Reaction emoji not in allowed list", {
+        console.log("Reaction emoji not in allowed lists", {
             emoji: reactionEmoji,
-            allowedEmojis,
+        });
+        return;
+    }
+
+    const emojiReactionType = getEmojiReactionType(reactionEmoji);
+
+    if (!emojiReactionType) {
+        // eslint-disable-next-line no-console
+        console.log("Reaction emoji not in allowed lists", {
+            emoji: reactionEmoji,
         });
         return;
     }
@@ -251,6 +257,7 @@ async function handleEvent(body: SlackEventCallbackBody): Promise<void> {
         const extractedData: z.infer<typeof ExtractedFromSlackSchema> = {
             slackMessageTs: messageTs,
             slackChannelName: channelName || "",
+            slackChannelId: channelId,
             slackSharedByDisplayName: messageAuthorDisplayName || "",
             slackReactedByDisplayName: reactedByDisplayName || "",
             slackLinks: extractedFromSlackMessage.links,
@@ -261,19 +268,20 @@ async function handleEvent(body: SlackEventCallbackBody): Promise<void> {
         console.log("Reaction added event - extracted data:", extractedData);
 
         // Send reply message to the channel
-        // @TODO: Check that we were able to extract links from the message, or reply with a message that we were unable to extract links.
-        // @TODO: (nice to have) Check if we have any links stored already with the URLs and if so, reply with a special message about this.
         if (extractedFromSlackMessage.links.length > 0) {
-            extractedFromSlackMessage.links.forEach(async (link) => {
-                console.log("IS WORKFLOW A THING", typeof processUrlWorkflow);
-                await start(processUrlWorkflow, [link.url, extractedData]);
+            await client.chat.postMessage({
+                channel: channelId,
+                text: `I'm analyzing the links and will add them to our ever-growing collection of useful resources. I will be back with the results shortly :nerd_face: :hourglass:.`,
+                thread_ts: messageTs,
             });
+
+            await start(processUrlWorkflow, [extractedData, emojiReactionType]);
 
             return;
         } else {
             await client.chat.postMessage({
                 channel: channelId,
-                text: "I was unable to extract any links from the message. Please try again.",
+                text: `Thank you for sharing, <@${extractedData.slackReactedByDisplayName}>, but I was unable to extract any links from the message. Please ensure the message contains valid links that I can store in our database.`,
                 thread_ts: messageTs,
             });
         }
